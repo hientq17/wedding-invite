@@ -1,9 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
   initCountdown();
   initMiniCalendar();
+  initMiniCalendarBride();
   initRevealOnScroll();
   initCopyButtons();
   initRsvpForm();
+  initGiftMessageForm();
+  initGalleryLightbox();
 });
 
 function initMusicToggleWiring() {
@@ -91,7 +94,7 @@ function initMiniCalendar() {
 
   el.innerHTML = `
     <div class="mini-calendar__photo">
-      <img src="assets/photos/img10.jpg" alt="" />
+      <img src="assets/photos/img11.jpg" alt="" />
       <span class="mini-calendar__corner mini-calendar__corner--left">${mm}.${dd}</span>
       <span class="mini-calendar__corner mini-calendar__corner--right">Tiệc cưới nhà trai</span>
       <div class="mini-calendar__overlay">
@@ -100,12 +103,70 @@ function initMiniCalendar() {
       </div>
     </div>
     <div class="mini-calendar__caption">
-        <h3>Tiệc Cưới Nhà Trai</h3>
+      <div class="event__sub">
+        <p>Tiệc Cưới Nhà Trai</p>
         <p class="event__date">Chủ Nhật, 02.08.2026</p>
         <p class="event__time">11:00 Sáng</p>
-        <p class="event__venue">Khách Sạn Như Minh Plaza</p>
-        <p class="event__address">41 Phạm Văn Đồng, TP. Đà Nẵng</p>
       </div>
+      <p class="event__venue">Khách Sạn Như Minh Plaza</p>
+      <p class="event__address">41 Phạm Văn Đồng, TP. Đà Nẵng</p>
+    </div>
+  `;
+}
+
+function initMiniCalendarBride() {
+  const el = document.getElementById('mini-calendar-bride');
+  if (!el) return;
+
+  const highlight = new Date(el.dataset.highlightDate);
+  const year = highlight.getFullYear();
+  const month = highlight.getMonth();
+  const lunar = el.dataset.lunarDate || '';
+  const timeLabel = el.dataset.timeLabel || '';
+
+  const monthNames = ['Tháng 1','Tháng 2','Tháng 3','Tháng 4','Tháng 5','Tháng 6','Tháng 7','Tháng 8','Tháng 9','Tháng 10','Tháng 11','Tháng 12'];
+  const dowFull = ['Chủ Nhật','Thứ Hai','Thứ Ba','Thứ Tư','Thứ Năm','Thứ Sáu','Thứ Bảy'];
+  const dow = ['CN','T2','T3','T4','T5','T6','T7'];
+
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const mm = String(month + 1).padStart(2, '0');
+  const dd = String(highlight.getDate()).padStart(2, '0');
+
+  let grid = '<div class="mini-calendar__grid">';
+  dow.forEach(d => grid += `<span class="dow">${d}</span>`);
+  for (let i = 0; i < firstDay; i++) grid += '<span></span>';
+  for (let day = 1; day <= daysInMonth; day++) {
+    const isHighlight = day === highlight.getDate();
+    const pin = isHighlight ? '<i class="mini-calendar__pin">&#10084;</i>' : '';
+    grid += `<span class="mini-calendar__day${isHighlight ? ' is-highlight' : ''}">${pin}${day}</span>`;
+  }
+  grid += '</div>';
+
+  el.innerHTML = `
+    <div class="mini-calendar__photo">
+      <img src="assets/photos/img10.jpg" alt="" />
+      <span class="mini-calendar__corner mini-calendar__corner--left">${mm}.${dd}</span>
+      <span class="mini-calendar__corner mini-calendar__corner--right">Tiệc cưới nhà gái</span>
+      <div class="mini-calendar__overlay">
+        <div class="mini-calendar__header">${monthNames[month]} ${year}</div>
+        ${grid}
+      </div>
+    </div>
+    <div class="mini-calendar__caption">
+      <div class="event__sub">
+        <p class="event__sub-label">Lễ Đính Hôn</p>
+        <p class="event__date">Thứ Bảy, 25.07.2026</p>
+        <p class="event__time">08:00 Sáng</p>
+      </div>
+      <div class="event__sub">
+        <p class="event__sub-label">Tiệc Cưới Nhà Gái</p>
+        <p class="event__date">Thứ Bảy, 25.07.2026</p>
+        <p class="event__time">10:30 Sáng</p>
+      </div>
+      <p class="event__venue">Khách Sạn Đại Thành</p>
+      <p class="event__address">Xã Yên Xuân, Tỉnh Nghệ An</p>
+    </div>
   `;
 }
 
@@ -169,4 +230,146 @@ function initRsvpForm() {
     form.reset();
     thanks.hidden = false;
   });
+}
+
+/* ============================================
+   Gift / wish message form (decline path)
+   ============================================
+   Same on-page confirmation pattern as initRsvpForm — wire the
+   fetch() call to a real backend when one is available.
+*/
+function initGiftMessageForm() {
+  const form = document.getElementById('gift-message-form');
+  if (!form) return;
+  const thanks = document.getElementById('gift-message-thanks');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    form.reset();
+    thanks.hidden = false;
+  });
+}
+
+/* ============================================
+   Gallery lightbox
+   ============================================ */
+function initGalleryLightbox() {
+  const lightbox = document.getElementById('lightbox');
+  const grid = document.querySelector('.gallery__grid');
+  if (!lightbox || !grid) return;
+  const lightboxImg = lightbox.querySelector('.lightbox__img');
+  const counter = lightbox.querySelector('.lightbox__counter');
+  const closeBtn = lightbox.querySelector('.lightbox__close');
+  const images = Array.from(grid.querySelectorAll('img.gallery__item'));
+  const moreCard = document.getElementById('galleryMore');
+  const moreCount = moreCard ? moreCard.querySelector('.gallery__more-count') : null;
+  let currentIndex = 0;
+
+  function show(index) {
+    currentIndex = (index + images.length) % images.length;
+    const img = images[currentIndex];
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    counter.textContent = `${currentIndex + 1} / ${images.length}`;
+  }
+
+  function open(index) {
+    show(index);
+    lightbox.classList.add('show');
+    lightbox.setAttribute('aria-hidden', 'false');
+  }
+
+  function close() {
+    lightbox.classList.remove('show');
+    lightbox.setAttribute('aria-hidden', 'true');
+    lightboxImg.src = '';
+  }
+
+  images.forEach((img, index) => {
+    img.addEventListener('click', () => open(index));
+  });
+
+  closeBtn.addEventListener('click', close);
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) close();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('show')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowRight') show(currentIndex + 1);
+    if (e.key === 'ArrowLeft') show(currentIndex - 1);
+  });
+
+  // Swipe left/right to navigate between photos on touch devices.
+  let touchStartX = 0;
+  lightbox.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].clientX;
+  }, { passive: true });
+  lightbox.addEventListener('touchend', (e) => {
+    const deltaX = e.changedTouches[0].clientX - touchStartX;
+    const swipeThreshold = 40;
+    if (deltaX > swipeThreshold) show(currentIndex - 1);
+    else if (deltaX < -swipeThreshold) show(currentIndex + 1);
+  }, { passive: true });
+
+  // Only show up to 2 rows of photos; the rest fold into a "view more" card
+  // that opens the lightbox from the first photo. Row height depends on
+  // how many columns the responsive grid currently renders, so recompute
+  // on resize.
+  if (moreCard) {
+    function updatePreview() {
+      const columnCount = getComputedStyle(grid).gridTemplateColumns.split(' ').length;
+      const visibleSlots = columnCount * 2;
+
+      if (images.length <= visibleSlots) {
+        images.forEach((img) => img.classList.remove('is-hidden'));
+        moreCard.hidden = true;
+        return;
+      }
+
+      const showCount = visibleSlots - 1;
+      images.forEach((img, index) => {
+        img.classList.toggle('is-hidden', index >= showCount);
+      });
+      moreCard.hidden = false;
+      moreCount.textContent = `+${images.length - showCount}`;
+    }
+
+    moreCard.addEventListener('click', () => open(0));
+    window.addEventListener('resize', updatePreview);
+    updatePreview();
+  }
+}
+
+function selectRSVP(option){
+
+    document.getElementById("attendCard").classList.remove("selected");
+    document.getElementById("declineCard").classList.remove("selected");
+
+    const gift = document.getElementById("giftSection");
+    const attend = document.getElementById("attendSection");
+
+    if(option === "attend"){
+
+        document.getElementById("attendCard").classList.add("selected");
+        attend.classList.add("show");
+        gift.classList.remove("show");
+        attend.scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+    }
+    else{
+
+        document.getElementById("declineCard").classList.add("selected");
+        attend.classList.remove("show");
+        gift.classList.add("show");
+
+        gift.scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+
+    }
+
 }

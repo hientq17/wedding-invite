@@ -76,26 +76,13 @@
   <!-- ===== Event details + calendar ===== -->
   <section class="section event" id="event">
     <p class="eyebrow reveal eyebrow--title">NHỮNG CỘT MỘC SẮP TỚI</p>
-
     <div class="event__grid reveal">
-      <div class="event__card">
-        <h3>Lễ Đính Hôn &amp; Lễ Cưới Nhà Gái</h3>
-        <div class="event__sub">
-          <p class="event__sub-label">Lễ Đính Hôn</p>
-          <p class="event__date">Thứ Bảy, 25.07.2026</p>
-          <p class="event__time">08:00 Sáng</p>
-        </div>
-        <div class="event__sub">
-          <p class="event__sub-label">Lễ Cưới Nhà Gái</p>
-          <p class="event__date">Thứ Bảy, 25.07.2026</p>
-          <p class="event__time">10:30 Sáng</p>
-        </div>
-        <p class="event__venue">Khách Sạn Đại Thành</p>
-        <p class="event__address">Xã Yên Xuân, Tỉnh Nghệ An</p>
+      <div class="event__calendar-wrap reveal">
+        <div id="mini-calendar-bride" class="mini-calendar" data-highlight-date="2026-07-25" data-lunar-date="Âm lịch 12/6 Bính Ngọ" data-time-label="10:30 Sáng"></div>
       </div>
-          <div class="event__calendar-wrap reveal">
-      <div id="mini-calendar" class="mini-calendar" data-highlight-date="2026-08-02" data-lunar-date="Âm lịch 20/6 Bính Ngọ" data-time-label="11:00 Sáng"></div>
-    </div>
+      <div class="event__calendar-wrap reveal">
+        <div id="mini-calendar" class="mini-calendar" data-highlight-date="2026-08-02" data-lunar-date="Âm lịch 20/6 Bính Ngọ" data-time-label="11:00 Sáng"></div>
+      </div>
     </div>
 
   </section>
@@ -110,15 +97,26 @@
       <img class="gallery__item" src="assets/photos/bg3.jpg" alt="Ảnh 4" />
       <img class="gallery__item" src="assets/photos/img8.jpg" alt="Ảnh 5" />
       <img class="gallery__item" src="assets/photos/img3.jpg" alt="Ảnh 6" />
+      <button type="button" id="galleryMore" class="gallery__item gallery__more" hidden>
+        <span class="gallery__more-count"></span>
+        <span class="gallery__more-label">Xem thêm</span>
+      </button>
     </div>
   </section>
+
+  <!-- ===== Gallery lightbox ===== -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button type="button" class="lightbox__close" aria-label="Đóng">&times;</button>
+    <img class="lightbox__img" src="" alt="" />
+    <p class="lightbox__counter"></p>
+  </div>
 
   <!-- ===== Map ===== -->
   <section class="section map-section" id="map">
     <p class="eyebrow reveal eyebrow--title">Địa điểm</p>
     <div class="map-grid reveal">
       <div class="map-card">
-        <h4>Lễ Cưới Nhà Gái</h4>
+        <h4>Tiệc Cưới Nhà Gái</h4>
         <p class="map-address">Khách Sạn Đại Thành, Xã Yên Xuân, Tỉnh Nghệ An</p>
         <div class="map-embed">
           <iframe
@@ -134,7 +132,7 @@
         </div>
       </div>
       <div class="map-card">
-        <h4>Lễ Cưới Nhà Trai</h4>
+        <h4>Tiệc Cưới Nhà Trai</h4>
         <p class="map-address">Khách Sạn Như Minh Plaza, 41 Phạm Văn Đồng, TP. Đà Nẵng</p>
         <div class="map-embed">
           <iframe
@@ -153,42 +151,90 @@
   </section>
 
   <!-- ===== Gift / tip section ===== -->
-  <section class="section gift" id="gift">
-    <p class="eyebrow reveal eyebrow--title">Với Tất Cả Tình Yêu Thương</p>
-    <p class="gift__intro reveal">Sự hiện diện của bạn là món quà quý giá nhất. Với những ai muốn gửi chút tấm lòng từ xa, thông tin của chúng tôi ở bên dưới.</p>
-    <div class="gift__grid reveal">
-      <div class="gift__card">
-        <h3>Nhà Trai</h3>
-        <p class="gift__field">Ngân hàng: <span>Ngân Hàng Ví Dụ</span></p>
-        <p class="gift__field">Tên Tài Khoản: <span>QUANG HIỀN</span></p>
-        <p class="gift__field">Số Tài Khoản: <span class="copy-target" data-copy="0000000000">0000000000</span></p>
-        <button class="btn btn--small copy-btn" data-copy="0000000000">Sao Chép Số</button>
+  <section class="rsvp-section">
+    <p class="eyebrow reveal eyebrow--title">Bạn sẽ đến chung vui cùng chúng mình chứ?</p>
+  
+    <div class="rsvp-options">
+  
+      <!-- Tham dự -->
+      <div class="rsvp-card" id="attendCard">
+        <div class="emoji">💖</div>
+  
+        <h3>Mình sẽ tham dự</h3>
+        <p>
+          Sự hiện diện của bạn là món quà ý nghĩa nhất dành cho
+          chúng mình.
+        </p>
+        <button onclick="selectRSVP('attend')">
+          Xác nhận tham dự
+        </button>
       </div>
-      <div class="gift__card">
-        <h3>Nhà Gái</h3>
-        <p class="gift__field">Ngân hàng: <span>Ngân Hàng Ví Dụ</span></p>
-        <p class="gift__field">Tên Tài Khoản: <span>LÂM GIANG</span></p>
-        <p class="gift__field">Số Tài Khoản: <span class="copy-target" data-copy="1111111111">1111111111</span></p>
-        <button class="btn btn--small copy-btn" data-copy="1111111111">Sao Chép Số</button>
+      <!-- Không tham dự -->
+      <div class="rsvp-card" id="declineCard">
+        <div class="emoji">🤍</div>
+        <h3>Mình không thể tham dự</h3>
+        <p>
+          Thật tiếc nếu bạn không thể tham dự. Nếu muốn gửi lời chúc hoặc quà
+          mừng, vui lòng nhấn bên dưới.
+        </p>
+        <button onclick="selectRSVP('decline')">
+          Gửi lời chúc / Quà mừng
+        </button>
+      </div>
+  
+    </div>
+
+  <div id="giftSection" class="gift-section">
+    <p class="eyebrow reveal eyebrow--title">💝 Thông tin mừng cưới</p>
+    <p class="gift-text">
+      Cảm ơn tình cảm và lời chúc của bạn dành cho chúng mình.
+      Nếu muốn gửi quà mừng, bạn có thể sử dụng thông tin bên dưới.
+    </p>
+    <div class="gift-container">
+      <div class="bank-account">
+        <img src="assets/photos/qr1.jpg" alt="QR Ngân hàng TPBank" class="qr-image">
+        <div class="bank-info">
+          <p><strong>Ngân hàng</strong><br>TPBank</p>
+          <p><strong>Số tài khoản</strong><br>02411042501
+            <button type="button" class="copy-btn" data-copy="02411042501">Sao chép</button>
+          </p>
+          <p><strong>Chủ tài khoản</strong><br>TRINH QUANG HIEN</p>
+        </div>
+      </div>
+      <div class="bank-account">
+        <img src="assets/photos/qr2.jpg" alt="QR Ngân hàng BIDV" class="qr-image">
+        <div class="bank-info">
+          <p><strong>Ngân hàng</strong><br>BIDV</p>
+          <p><strong>Số tài khoản</strong><br>51110000516510
+            <button type="button" class="copy-btn" data-copy="51110000516510">Sao chép</button>
+          </p>
+          <p><strong>Chủ tài khoản</strong><br>NGUYEN LAM GIANG</p>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- ===== RSVP ===== -->
-  <section class="section rsvp" id="rsvp">
-    <p class="eyebrow reveal eyebrow--title">Xác Nhận Tham Dự</p>
-    <form id="rsvp-form" class="rsvp-form reveal">
+    <form id="gift-message-form" class="rsvp-form reveal">
       <div class="field">
         <label for="guest-name">Họ Và Tên</label>
         <input type="text" id="guest-name" name="guest-name" required />
       </div>
       <div class="field">
-        <label for="guest-attending">Bạn Có Tham Dự Không?</label>
-        <select id="guest-attending" name="guest-attending" required>
-          <option value="">Vui lòng chọn</option>
-          <option value="yes">Vui Mừng Tham Dự</option>
-          <option value="no">Rất Tiếc Không Thể Tham Dự</option>
-        </select>
+        <label for="gift-message">Lời nhắn gửi đến cô dâu chú rể</label>
+        <textarea id="gift-message" name="gift-message" rows="4"></textarea>
+      </div>
+      <button type="submit" class="btn btn--filled">Gửi</button>
+      <p id="gift-message-thanks" class="rsvp-thanks" hidden>Cảm ơn bạn! Lời nhắn của bạn đã được ghi nhận. 💌</p>
+    </form>
+
+  </div>
+
+  <!-- ===== RSVP ===== -->
+  <div id="attendSection" class="gift-section">
+    <p class="eyebrow reveal eyebrow--title">💝 Xác Nhận Tham Dự</p>
+    <form id="rsvp-form" class="rsvp-form reveal">
+      <div class="field">
+        <label for="guest-name">Họ Và Tên</label>
+        <input type="text" id="guest-name" name="guest-name" required />
       </div>
       <div class="field">
         <label for="guest-count">Số Lượng Khách</label>
@@ -201,14 +247,18 @@
       <button type="submit" class="btn btn--filled">Gửi Xác Nhận</button>
       <p id="rsvp-thanks" class="rsvp-thanks" hidden>Cảm ơn bạn! Phản hồi của bạn đã được ghi nhận. 💌</p>
     </form>
+  </div>
+
   </section>
+  
+
 
   <!-- ===== Footer ===== -->
   <footer class="footer">
     <img class="footer__decor" src="assets/decor/peony.png" alt="" aria-hidden="true" />
     <img class="footer__logo" src="assets/decor/logo_monogram.png" alt="Logo Quang Hiền &amp; Lâm Giang" />
-    <p class="footer__names">Quang Hiền &amp; Lâm Giang</p>
-    <p class="footer__note">Với tất cả tình yêu thương và lòng biết ơn, chúng tôi cảm ơn bạn đã là một phần trong câu chuyện của chúng tôi.</p>
+    <p class="footer__names">Quang Hiền <span class="footer__amp">&amp;</span> Lâm Giang</p>
+    <p class="footer__note">Với tất cả tình yêu thương và lòng biết ơn, chúng mình cảm ơn bạn đã là một phần trong câu chuyện của chúng mình.</p>
     <a href="#hero" class="back-to-top">Lên Đầu Trang ↑</a>
   </footer>
 
