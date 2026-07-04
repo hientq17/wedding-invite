@@ -477,6 +477,27 @@ img { max-width: 100%; display: block; }
   line-height: 1;
   cursor: pointer;
 }
+.lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.3);
+  border: none;
+  color: #fff;
+  font-size: 1.4rem;
+  line-height: 1;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.lightbox__nav:hover { background: rgba(0, 0, 0, 0.55); }
+.lightbox__nav--prev { left: 1rem; }
+.lightbox__nav--next { right: 1rem; }
 .lightbox__counter {
   position: absolute;
   bottom: 1.2rem;
@@ -551,6 +572,7 @@ img { max-width: 100%; display: block; }
   background: var(--color-surface);
   color: var(--color-text);
 }
+.field textarea { resize: none; }
 .rsvp-form .btn { justify-self: center; }
 .rsvp-thanks { text-align: center; color: var(--color-primary); font-weight: 600; }
 

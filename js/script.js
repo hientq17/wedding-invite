@@ -328,6 +328,8 @@ function initGalleryLightbox() {
   const lightboxImg = lightbox.querySelector('.lightbox__img');
   const counter = lightbox.querySelector('.lightbox__counter');
   const closeBtn = lightbox.querySelector('.lightbox__close');
+  const prevBtn = lightbox.querySelector('.lightbox__nav--prev');
+  const nextBtn = lightbox.querySelector('.lightbox__nav--next');
   const images = Array.from(grid.querySelectorAll('img.gallery__item'));
   const moreCard = document.getElementById('galleryMore');
 
@@ -367,6 +369,8 @@ function initGalleryLightbox() {
   });
 
   closeBtn.addEventListener('click', close);
+  prevBtn.addEventListener('click', () => show(currentIndex - 1));
+  nextBtn.addEventListener('click', () => show(currentIndex + 1));
   lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox) close();
   });
