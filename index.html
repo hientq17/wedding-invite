@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Quang Hiền &amp; Lâm Giang | Thiệp Mời Cưới</title>
+<meta name="description" content="Trân trọng kính mời bạn đến dự đám cưới của chúng tôi!" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- Floating music toggle -->
+<button id="music-toggle" class="music-toggle" aria-label="Bật/tắt nhạc nền" aria-pressed="false">
+  <span class="music-toggle__icon"></span>
+</button>
+
+<main id="main-content" class="main-content">
+
+  <!-- ===== Hero ===== -->
+  <header class="hero" id="hero">
+    <div class="hero__overlay"></div>
+    <div class="hero__inner">
+      <p class="eyebrow">Chúng Tôi Sắp Kết Hôn</p>
+      <h1 class="hero__names">
+        <span class="hero__name">Quang Hiền</span>
+        <span class="hero__amp">&amp;</span>
+        <span class="hero__name">Lâm Giang</span>
+      </h1>
+      <p class="hero__date">Chủ Nhật, ngày 2 tháng 8 năm 2026</p>
+    </div>
+    <div class="scroll-cue" aria-hidden="true">↓</div>
+  </header>
+
+  <!-- ===== Countdown ===== -->
+  <section class="section countdown-section" id="countdown-section">
+    <p class="eyebrow">Đếm Ngược Đến Ngày Trọng Đại</p>
+    <div id="countdown" class="countdown" data-wedding-date="2026-08-02T10:30:00">
+      <div class="countdown__item"><span class="countdown__num" data-days>00</span><span class="countdown__label">Ngày</span></div>
+      <div class="countdown__item"><span class="countdown__num" data-hours>00</span><span class="countdown__label">Giờ</span></div>
+      <div class="countdown__item"><span class="countdown__num" data-minutes>00</span><span class="countdown__label">Phút</span></div>
+      <div class="countdown__item"><span class="countdown__num" data-seconds>00</span><span class="countdown__label">Giây</span></div>
+    </div>
+  </section>
+
+  <!-- ===== Couple intro ===== -->
+  <section class="section couple reveal" id="couple">
+    <p class="eyebrow">Cô Dâu &amp; Chú Rể</p>
+    <h2 class="section__title">Đôi Uyên Ương</h2>
+    <div class="couple__grid">
+      <div class="couple__card">
+        <img class="couple__photo" src="assets/photos/img5.jpg" alt="Ảnh Chú Rể" />
+        <h3>Quang Hiền</h3>
+        <p class="couple__meta">Con trai của Bà Bùi Thị Thuý</p>
+        <p class="couple__bio">Một câu ngắn gọn, dễ thương về chú rể sẽ được đặt ở đây. Hãy thay bằng lời của riêng bạn.</p>
+      </div>
+      <div class="couple__divider" aria-hidden="true">&amp;</div>
+      <div class="couple__card">
+        <img class="couple__photo" src="assets/photos/img4.jpg" alt="Ảnh Cô Dâu" />
+        <h3>Lâm Giang</h3>
+        <p class="couple__meta">Con gái của Ông Nguyễn Đình Sáng &amp; Bà Trần Thị Hương</p>
+        <p class="couple__bio">Một câu ngắn gọn, dễ thương về cô dâu sẽ được đặt ở đây. Hãy thay bằng lời của riêng bạn.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Event details + calendar ===== -->
+  <section class="section event" id="event">
+    <p class="eyebrow reveal">Lưu Lại Ngày Này</p>
+    <h2 class="section__title reveal">Các Sự Kiện Cưới</h2>
+
+    <div class="event__grid reveal">
+      <div class="event__card">
+        <h3>Lễ Đính Hôn &amp; Lễ Cưới Nhà Gái</h3>
+        <div class="event__sub">
+          <p class="event__sub-label">Lễ Đính Hôn</p>
+          <p class="event__date">Thứ Bảy, 25.07.2026</p>
+        </div>
+        <div class="event__sub">
+          <p class="event__sub-label">Lễ Cưới Nhà Gái</p>
+          <p class="event__date">Chủ Nhật, 02.08.2026</p>
+          <p class="event__time">10:30 Sáng</p>
+        </div>
+        <p class="event__venue">Khách Sạn Đại Thành</p>
+        <p class="event__address">Xã Yên Xuân, Tỉnh Nghệ An</p>
+      </div>
+      <div class="event__card">
+        <h3>Lễ Cưới Nhà Trai</h3>
+        <p class="event__date">Chủ Nhật, 02.08.2026</p>
+        <p class="event__time">11:00 Sáng</p>
+        <p class="event__venue">Khách Sạn Như Minh Plaza</p>
+        <p class="event__address">41 Phạm Văn Đồng, TP. Đà Nẵng</p>
+      </div>
+    </div>
+
+    <div class="event__calendar-wrap reveal">
+      <div id="mini-calendar" class="mini-calendar" data-highlight-date="2026-08-02"></div>
+    </div>
+  </section>
+
+  <!-- ===== Gallery ===== -->
+  <section class="section gallery" id="gallery">
+    <p class="eyebrow reveal">Khoảnh Khắc Của Chúng Tôi</p>
+    <h2 class="section__title reveal">Album Ảnh</h2>
+    <div class="gallery__grid reveal">
+      <img class="gallery__item" src="assets/photos/img7.jpg" alt="Ảnh 1" />
+      <img class="gallery__item" src="assets/photos/img1.jpg" alt="Ảnh 2" />
+      <img class="gallery__item" src="assets/photos/img2.jpg" alt="Ảnh 3" />
+      <img class="gallery__item" src="assets/photos/bg3.jpg" alt="Ảnh 4" />
+      <img class="gallery__item" src="assets/photos/img8.jpg" alt="Ảnh 5" />
+      <img class="gallery__item" src="assets/photos/img3.jpg" alt="Ảnh 6" />
+    </div>
+  </section>
+
+  <!-- ===== Map ===== -->
+  <section class="section map-section" id="map">
+    <p class="eyebrow reveal">Đường Đến Địa Điểm</p>
+    <h2 class="section__title reveal">Địa Điểm</h2>
+    <div class="map-grid reveal">
+      <div class="map-card">
+        <h3>Lễ Cưới Nhà Gái</h3>
+        <p class="map-address">Khách Sạn Đại Thành, Xã Yên Xuân, Tỉnh Nghệ An</p>
+        <div class="map-embed">
+          <iframe
+            title="Bản đồ Khách Sạn Đại Thành, Nghệ An"
+            src="https://www.google.com/maps?q=Kh%C3%A1ch%20s%E1%BA%A1n%20%C4%90%E1%BA%A1i%20Th%C3%A0nh%2C%20x%C3%A3%20Y%C3%AAn%20Xu%C3%A2n%2C%20Ngh%E1%BB%87%20An&output=embed"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+      <div class="map-card">
+        <h3>Lễ Cưới Nhà Trai</h3>
+        <p class="map-address">Khách Sạn Như Minh Plaza, 41 Phạm Văn Đồng, TP. Đà Nẵng</p>
+        <div class="map-embed">
+          <iframe
+            title="Bản đồ Khách Sạn Như Minh Plaza, Đà Nẵng"
+            src="https://www.google.com/maps?q=Kh%C3%A1ch%20s%E1%BA%A1n%20Nh%C6%B0%20Minh%20Plaza%2C%2041%20Ph%E1%BA%A1m%20V%C4%83n%20%C4%90%E1%BB%93ng%2C%20%C4%90%C3%A0%20N%E1%BA%B5ng&output=embed"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Gift / tip section ===== -->
+  <section class="section gift" id="gift">
+    <p class="eyebrow reveal">Với Tất Cả Tình Yêu Thương</p>
+    <h2 class="section__title reveal">Mừng Cưới</h2>
+    <p class="gift__intro reveal">Sự hiện diện của bạn là món quà quý giá nhất. Với những ai muốn gửi chút tấm lòng từ xa, thông tin của chúng tôi ở bên dưới.</p>
+    <div class="gift__grid reveal">
+      <div class="gift__card">
+        <h3>Nhà Trai</h3>
+        <p class="gift__field">Ngân hàng: <span>Ngân Hàng Ví Dụ</span></p>
+        <p class="gift__field">Tên Tài Khoản: <span>QUANG HIỀN</span></p>
+        <p class="gift__field">Số Tài Khoản: <span class="copy-target" data-copy="0000000000">0000000000</span></p>
+        <button class="btn btn--small copy-btn" data-copy="0000000000">Sao Chép Số</button>
+      </div>
+      <div class="gift__card">
+        <h3>Nhà Gái</h3>
+        <p class="gift__field">Ngân hàng: <span>Ngân Hàng Ví Dụ</span></p>
+        <p class="gift__field">Tên Tài Khoản: <span>LÂM GIANG</span></p>
+        <p class="gift__field">Số Tài Khoản: <span class="copy-target" data-copy="1111111111">1111111111</span></p>
+        <button class="btn btn--small copy-btn" data-copy="1111111111">Sao Chép Số</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RSVP ===== -->
+  <section class="section rsvp" id="rsvp">
+    <p class="eyebrow reveal">Vui Lòng Phản Hồi</p>
+    <h2 class="section__title reveal">Xác Nhận Tham Dự</h2>
+    <form id="rsvp-form" class="rsvp-form reveal">
+      <div class="field">
+        <label for="guest-name">Họ Và Tên</label>
+        <input type="text" id="guest-name" name="guest-name" required />
+      </div>
+      <div class="field">
+        <label for="guest-attending">Bạn Có Tham Dự Không?</label>
+        <select id="guest-attending" name="guest-attending" required>
+          <option value="">Vui lòng chọn</option>
+          <option value="yes">Vui Mừng Tham Dự</option>
+          <option value="no">Rất Tiếc Không Thể Tham Dự</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="guest-count">Số Lượng Khách</label>
+        <input type="number" id="guest-count" name="guest-count" min="1" max="10" value="1" />
+      </div>
+      <div class="field">
+        <label for="guest-message">Lời Nhắn Gửi Đến Cô Dâu Chú Rể</label>
+        <textarea id="guest-message" name="guest-message" rows="4"></textarea>
+      </div>
+      <button type="submit" class="btn btn--filled">Gửi Xác Nhận</button>
+      <p id="rsvp-thanks" class="rsvp-thanks" hidden>Cảm ơn bạn! Phản hồi của bạn đã được ghi nhận. 💌</p>
+    </form>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <p class="footer__names">Quang Hiền &amp; Lâm Giang</p>
+    <p class="footer__note">Với tất cả tình yêu thương và lòng biết ơn, chúng tôi cảm ơn bạn đã là một phần trong câu chuyện của chúng tôi.</p>
+    <a href="#hero" class="back-to-top">Lên Đầu Trang ↑</a>
+  </footer>
+
+</main>
+
+<audio id="bg-music" src="assets/audio/music.mp3" loop preload="none"></audio>
+
+<script src="js/script.js" defer></script>
+</body>
+</html>
