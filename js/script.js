@@ -67,24 +67,46 @@ function initMiniCalendar() {
   const highlight = new Date(el.dataset.highlightDate);
   const year = highlight.getFullYear();
   const month = highlight.getMonth();
+  const lunar = el.dataset.lunarDate || '';
+  const timeLabel = el.dataset.timeLabel || '';
 
   const monthNames = ['Tháng 1','Tháng 2','Tháng 3','Tháng 4','Tháng 5','Tháng 6','Tháng 7','Tháng 8','Tháng 9','Tháng 10','Tháng 11','Tháng 12'];
+  const dowFull = ['Chủ Nhật','Thứ Hai','Thứ Ba','Thứ Tư','Thứ Năm','Thứ Sáu','Thứ Bảy'];
   const dow = ['CN','T2','T3','T4','T5','T6','T7'];
 
   const firstDay = new Date(year, month, 1).getDay();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const mm = String(month + 1).padStart(2, '0');
+  const dd = String(highlight.getDate()).padStart(2, '0');
 
-  let html = `<div class="mini-calendar__header">${monthNames[month]} ${year}</div>`;
-  html += '<div class="mini-calendar__grid">';
-  dow.forEach(d => html += `<span class="dow">${d}</span>`);
-  for (let i = 0; i < firstDay; i++) html += '<span></span>';
+  let grid = '<div class="mini-calendar__grid">';
+  dow.forEach(d => grid += `<span class="dow">${d}</span>`);
+  for (let i = 0; i < firstDay; i++) grid += '<span></span>';
   for (let day = 1; day <= daysInMonth; day++) {
     const isHighlight = day === highlight.getDate();
-    html += `<span class="mini-calendar__day${isHighlight ? ' is-highlight' : ''}">${day}</span>`;
+    const pin = isHighlight ? '<i class="mini-calendar__pin">&#10084;</i>' : '';
+    grid += `<span class="mini-calendar__day${isHighlight ? ' is-highlight' : ''}">${pin}${day}</span>`;
   }
-  html += '</div>';
+  grid += '</div>';
 
-  el.innerHTML = html;
+  el.innerHTML = `
+    <div class="mini-calendar__photo">
+      <img src="assets/photos/img10.jpg" alt="" />
+      <span class="mini-calendar__corner mini-calendar__corner--left">${mm}.${dd}</span>
+      <span class="mini-calendar__corner mini-calendar__corner--right">Tiệc cưới nhà trai</span>
+      <div class="mini-calendar__overlay">
+        <div class="mini-calendar__header">${monthNames[month]} ${year}</div>
+        ${grid}
+      </div>
+    </div>
+    <div class="mini-calendar__caption">
+        <h3>Tiệc Cưới Nhà Trai</h3>
+        <p class="event__date">Chủ Nhật, 02.08.2026</p>
+        <p class="event__time">11:00 Sáng</p>
+        <p class="event__venue">Khách Sạn Như Minh Plaza</p>
+        <p class="event__address">41 Phạm Văn Đồng, TP. Đà Nẵng</p>
+      </div>
+  `;
 }
 
 /* ============================================

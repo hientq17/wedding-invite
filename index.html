@@ -25,13 +25,15 @@
   <header class="hero" id="hero">
     <div class="hero__overlay"></div>
     <div class="hero__inner">
-      <p class="eyebrow">Chúng Tôi Sắp Kết Hôn</p>
+      <img class="hero__logo" src="assets/decor/logo_monogram.png" alt="Logo Quang Hiền &amp; Lâm Giang" />
+      <p class="eyebrow">Save The Date</p>
       <h1 class="hero__names">
         <span class="hero__name">Quang Hiền</span>
         <span class="hero__amp">&amp;</span>
         <span class="hero__name">Lâm Giang</span>
       </h1>
       <p class="hero__date">Chủ Nhật, ngày 2 tháng 8 năm 2026</p>
+      <p class="hero__date-lunar">(Tức ngày 20 tháng 6 năm Bính Ngọ)</p>
     </div>
     <div class="scroll-cue" aria-hidden="true">↓</div>
   </header>
@@ -49,19 +51,22 @@
 
   <!-- ===== Couple intro ===== -->
   <section class="section couple reveal" id="couple">
-    <p class="eyebrow">Cô Dâu &amp; Chú Rể</p>
-    <h2 class="section__title">Đôi Uyên Ương</h2>
+    <p class="eyebrow eyebrow--title">Chúng mình là</p>
     <div class="couple__grid">
       <div class="couple__card">
         <img class="couple__photo" src="assets/photos/img5.jpg" alt="Ảnh Chú Rể" />
-        <h3>Quang Hiền</h3>
+        <h1 class="hero__names">
+          <span class="hero__name">Quang Hiền</span>
+        </h1>
         <p class="couple__meta">Con trai của Bà Bùi Thị Thuý</p>
         <p class="couple__bio">Một câu ngắn gọn, dễ thương về chú rể sẽ được đặt ở đây. Hãy thay bằng lời của riêng bạn.</p>
       </div>
       <div class="couple__divider" aria-hidden="true">&amp;</div>
       <div class="couple__card">
         <img class="couple__photo" src="assets/photos/img4.jpg" alt="Ảnh Cô Dâu" />
-        <h3>Lâm Giang</h3>
+        <h1 class="hero__names">
+          <span class="hero__name">Lâm Giang</span>
+        </h1>
         <p class="couple__meta">Con gái của Ông Nguyễn Đình Sáng &amp; Bà Trần Thị Hương</p>
         <p class="couple__bio">Một câu ngắn gọn, dễ thương về cô dâu sẽ được đặt ở đây. Hãy thay bằng lời của riêng bạn.</p>
       </div>
@@ -70,8 +75,7 @@
 
   <!-- ===== Event details + calendar ===== -->
   <section class="section event" id="event">
-    <p class="eyebrow reveal">Lưu Lại Ngày Này</p>
-    <h2 class="section__title reveal">Các Sự Kiện Cưới</h2>
+    <p class="eyebrow reveal eyebrow--title">NHỮNG CỘT MỘC SẮP TỚI</p>
 
     <div class="event__grid reveal">
       <div class="event__card">
@@ -79,33 +83,26 @@
         <div class="event__sub">
           <p class="event__sub-label">Lễ Đính Hôn</p>
           <p class="event__date">Thứ Bảy, 25.07.2026</p>
+          <p class="event__time">08:00 Sáng</p>
         </div>
         <div class="event__sub">
           <p class="event__sub-label">Lễ Cưới Nhà Gái</p>
-          <p class="event__date">Chủ Nhật, 02.08.2026</p>
+          <p class="event__date">Thứ Bảy, 25.07.2026</p>
           <p class="event__time">10:30 Sáng</p>
         </div>
         <p class="event__venue">Khách Sạn Đại Thành</p>
         <p class="event__address">Xã Yên Xuân, Tỉnh Nghệ An</p>
       </div>
-      <div class="event__card">
-        <h3>Lễ Cưới Nhà Trai</h3>
-        <p class="event__date">Chủ Nhật, 02.08.2026</p>
-        <p class="event__time">11:00 Sáng</p>
-        <p class="event__venue">Khách Sạn Như Minh Plaza</p>
-        <p class="event__address">41 Phạm Văn Đồng, TP. Đà Nẵng</p>
-      </div>
+          <div class="event__calendar-wrap reveal">
+      <div id="mini-calendar" class="mini-calendar" data-highlight-date="2026-08-02" data-lunar-date="Âm lịch 20/6 Bính Ngọ" data-time-label="11:00 Sáng"></div>
+    </div>
     </div>
 
-    <div class="event__calendar-wrap reveal">
-      <div id="mini-calendar" class="mini-calendar" data-highlight-date="2026-08-02"></div>
-    </div>
   </section>
 
   <!-- ===== Gallery ===== -->
   <section class="section gallery" id="gallery">
-    <p class="eyebrow reveal">Khoảnh Khắc Của Chúng Tôi</p>
-    <h2 class="section__title reveal">Album Ảnh</h2>
+    <p class="eyebrow reveal eyebrow--title">Khoảnh khắc của chúng mình</p>
     <div class="gallery__grid reveal">
       <img class="gallery__item" src="assets/photos/img7.jpg" alt="Ảnh 1" />
       <img class="gallery__item" src="assets/photos/img1.jpg" alt="Ảnh 2" />
@@ -118,11 +115,10 @@
 
   <!-- ===== Map ===== -->
   <section class="section map-section" id="map">
-    <p class="eyebrow reveal">Đường Đến Địa Điểm</p>
-    <h2 class="section__title reveal">Địa Điểm</h2>
+    <p class="eyebrow reveal eyebrow--title">Địa điểm</p>
     <div class="map-grid reveal">
       <div class="map-card">
-        <h3>Lễ Cưới Nhà Gái</h3>
+        <h4>Lễ Cưới Nhà Gái</h4>
         <p class="map-address">Khách Sạn Đại Thành, Xã Yên Xuân, Tỉnh Nghệ An</p>
         <div class="map-embed">
           <iframe
@@ -138,7 +134,7 @@
         </div>
       </div>
       <div class="map-card">
-        <h3>Lễ Cưới Nhà Trai</h3>
+        <h4>Lễ Cưới Nhà Trai</h4>
         <p class="map-address">Khách Sạn Như Minh Plaza, 41 Phạm Văn Đồng, TP. Đà Nẵng</p>
         <div class="map-embed">
           <iframe
@@ -158,8 +154,7 @@
 
   <!-- ===== Gift / tip section ===== -->
   <section class="section gift" id="gift">
-    <p class="eyebrow reveal">Với Tất Cả Tình Yêu Thương</p>
-    <h2 class="section__title reveal">Mừng Cưới</h2>
+    <p class="eyebrow reveal eyebrow--title">Với Tất Cả Tình Yêu Thương</p>
     <p class="gift__intro reveal">Sự hiện diện của bạn là món quà quý giá nhất. Với những ai muốn gửi chút tấm lòng từ xa, thông tin của chúng tôi ở bên dưới.</p>
     <div class="gift__grid reveal">
       <div class="gift__card">
@@ -181,8 +176,7 @@
 
   <!-- ===== RSVP ===== -->
   <section class="section rsvp" id="rsvp">
-    <p class="eyebrow reveal">Vui Lòng Phản Hồi</p>
-    <h2 class="section__title reveal">Xác Nhận Tham Dự</h2>
+    <p class="eyebrow reveal eyebrow--title">Xác Nhận Tham Dự</p>
     <form id="rsvp-form" class="rsvp-form reveal">
       <div class="field">
         <label for="guest-name">Họ Và Tên</label>
@@ -211,6 +205,8 @@
 
   <!-- ===== Footer ===== -->
   <footer class="footer">
+    <img class="footer__decor" src="assets/decor/peony.png" alt="" aria-hidden="true" />
+    <img class="footer__logo" src="assets/decor/logo_monogram.png" alt="Logo Quang Hiền &amp; Lâm Giang" />
     <p class="footer__names">Quang Hiền &amp; Lâm Giang</p>
     <p class="footer__note">Với tất cả tình yêu thương và lòng biết ơn, chúng tôi cảm ơn bạn đã là một phần trong câu chuyện của chúng tôi.</p>
     <a href="#hero" class="back-to-top">Lên Đầu Trang ↑</a>
