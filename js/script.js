@@ -22,6 +22,25 @@ function initMusicToggleWiring() {
       musicToggle.setAttribute('aria-pressed', 'false');
     }
   });
+
+  function tryAutoplay() {
+    music.play()
+      .then(() => musicToggle.setAttribute('aria-pressed', 'true'))
+      .catch(() => {
+        // Autoplay blocked by browser — start on the first user interaction instead.
+        const startOnInteraction = () => {
+          music.play().catch(() => {});
+          musicToggle.setAttribute('aria-pressed', 'true');
+          document.removeEventListener('click', startOnInteraction);
+          document.removeEventListener('touchstart', startOnInteraction);
+          document.removeEventListener('keydown', startOnInteraction);
+        };
+        document.addEventListener('click', startOnInteraction);
+        document.addEventListener('touchstart', startOnInteraction);
+        document.addEventListener('keydown', startOnInteraction);
+      });
+  }
+  tryAutoplay();
 }
 initMusicToggleWiring();
 
@@ -94,7 +113,7 @@ function initMiniCalendar() {
 
   el.innerHTML = `
     <div class="mini-calendar__photo">
-      <img src="assets/photos/img11.jpg" alt="" />
+      <img src="assets/decor/calendar2.jpg" alt="" />
       <span class="mini-calendar__corner mini-calendar__corner--left">${mm}.${dd}</span>
       <span class="mini-calendar__corner mini-calendar__corner--right">Tiệc cưới nhà trai</span>
       <div class="mini-calendar__overlay">
@@ -145,7 +164,7 @@ function initMiniCalendarBride() {
 
   el.innerHTML = `
     <div class="mini-calendar__photo">
-      <img src="assets/photos/img10.jpg" alt="" />
+      <img src="assets/decor/calendar1.jpg" alt="" />
       <span class="mini-calendar__corner mini-calendar__corner--left">${mm}.${dd}</span>
       <span class="mini-calendar__corner mini-calendar__corner--right">Tiệc cưới nhà gái</span>
       <div class="mini-calendar__overlay">
@@ -209,44 +228,89 @@ function initCopyButtons() {
 }
 
 /* ============================================
+   RSVP webhook (Power Automate)
+   ============================================ */
+const RSVP_WEBHOOK_URL =
+  'https://default711d7bdc4e5347ee8054c3ea91f42e.87.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/20/workflows/84827523799e4807b0f697838aece35e/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=KNngyC5wsXcUB9uttkLOeaRSsW8kLORbxMbCZGXMH74';
+
+async function submitRsvp({ name, attendanceNum, willAttend, note }) {
+  const response = await fetch(RSVP_WEBHOOK_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      Name: name,
+      AttendanceNum: attendanceNum,
+      WillAttend: willAttend,
+      Note: note,
+    }),
+  });
+  if (!response.ok) {
+    throw new Error(`Request failed with status ${response.status}`);
+  }
+}
+
+/* ============================================
    RSVP form
-   ============================================
-   This currently just confirms on-page. To actually collect responses,
-   point the fetch() call below at a form backend (Formspree, Google
-   Apps Script, your own API, etc.) and pass along the FormData.
-*/
+   ============================================ */
 function initRsvpForm() {
   const form = document.getElementById('rsvp-form');
   if (!form) return;
   const thanks = document.getElementById('rsvp-thanks');
+  const submitBtn = form.querySelector('button[type="submit"]');
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    const name = form.querySelector('#guest-name').value;
+    const guestCount = form.querySelector('#guest-count').value;
+    const message = form.querySelector('#guest-message').value;
 
-    // Example of wiring to a real backend:
-    // const data = new FormData(form);
-    // fetch('https://formspree.io/f/your-id', { method: 'POST', body: data, headers: { Accept: 'application/json' } });
-
-    form.reset();
-    thanks.hidden = false;
+    submitBtn.disabled = true;
+    try {
+      await submitRsvp({
+        name,
+        attendanceNum: Number(guestCount),
+        willAttend: true,
+        note: message,
+      });
+      form.reset();
+      thanks.hidden = false;
+    } catch (err) {
+      alert('Có lỗi xảy ra, vui lòng thử lại sau.');
+    } finally {
+      submitBtn.disabled = false;
+    }
   });
 }
 
 /* ============================================
    Gift / wish message form (decline path)
-   ============================================
-   Same on-page confirmation pattern as initRsvpForm — wire the
-   fetch() call to a real backend when one is available.
-*/
+   ============================================ */
 function initGiftMessageForm() {
   const form = document.getElementById('gift-message-form');
   if (!form) return;
   const thanks = document.getElementById('gift-message-thanks');
+  const submitBtn = form.querySelector('button[type="submit"]');
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    form.reset();
-    thanks.hidden = false;
+    const name = form.querySelector('#guest-name').value;
+    const message = form.querySelector('#gift-message').value;
+
+    submitBtn.disabled = true;
+    try {
+      await submitRsvp({
+        name,
+        attendanceNum: 0,
+        willAttend: false,
+        note: message,
+      });
+      form.reset();
+      thanks.hidden = false;
+    } catch (err) {
+      alert('Có lỗi xảy ra, vui lòng thử lại sau.');
+    } finally {
+      submitBtn.disabled = false;
+    }
   });
 }
 
@@ -262,6 +326,15 @@ function initGalleryLightbox() {
   const closeBtn = lightbox.querySelector('.lightbox__close');
   const images = Array.from(grid.querySelectorAll('img.gallery__item'));
   const moreCard = document.getElementById('galleryMore');
+
+  // Shuffle the visual order of the photos on every reload.
+  for (let i = images.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [images[i], images[j]] = [images[j], images[i]];
+  }
+  images.forEach((img) => grid.appendChild(img));
+  if (moreCard) grid.appendChild(moreCard);
+
   const moreCount = moreCard ? moreCard.querySelector('.gallery__more-count') : null;
   let currentIndex = 0;
 

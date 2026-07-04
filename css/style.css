@@ -76,7 +76,7 @@ img { max-width: 100%; display: block; }
 .section {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 5rem 1.5rem;
+  padding: 3rem 1.5rem;
 }
 
 /* ---------- Buttons ---------- */
@@ -122,11 +122,10 @@ img { max-width: 100%; display: block; }
   justify-content: center;
 }
 .music-toggle__icon {
-  width: 18px;
-  height: 18px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  border: 2px solid var(--color-primary);
-  border-top-color: transparent;
+  background: url('../assets/decor/music.png') center / cover no-repeat;
   animation: spin 3s linear infinite;
   animation-play-state: paused;
 }
@@ -145,7 +144,7 @@ img { max-width: 100%; display: block; }
   justify-content: center;
   text-align: center;
   background: linear-gradient(rgba(253,248,243,0.8), rgba(253,248,243,0.8)),
-              url('../assets/photos/bg1.jpg');
+              url('../assets/decor/bg1.jpg');
   background-size: cover;
   background-position: center;
   padding: 2rem 1.5rem;
@@ -177,7 +176,7 @@ img { max-width: 100%; display: block; }
 }
 .hero__date-lunar {
   font-style: italic;
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: var(--color-text-soft);
   margin-bottom: 2rem;
 }
@@ -195,7 +194,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* ---------- Countdown ---------- */
-.countdown-section { padding-bottom: 4rem; }
+.countdown-section { padding-bottom: 2.5rem; }
 .countdown {
   display: flex;
   justify-content: center;
@@ -465,7 +464,7 @@ img { max-width: 100%; display: block; }
   gap: 1.5rem;
 }
 .map-card { text-align: center; }
-.map-card h3 { font-family: var(--font-heading); margin: 0 0 0.3rem; }
+.map-card h4 { font-family: var(--font-heading); margin: 0 0 0.3rem; }
 .map-address { color: var(--color-text-soft); font-size: 0.9rem; margin: 0 0 0.8rem; }
 .map-embed {
   width: 100%;
@@ -781,7 +780,7 @@ img { max-width: 100%; display: block; }
     min-height: auto;
     aspect-ratio: 853 / 1280;
     background-image: linear-gradient(rgba(253,248,243,0.8), rgba(253,248,243,0.8)),
-                       url('../assets/photos/bg3.jpg');
+                       url('../assets/decor/bg2.jpg');
     background-size: cover;
     background-position: center;
   }
@@ -790,4 +789,6 @@ img { max-width: 100%; display: block; }
   .countdown__item { flex: 1 1 0; min-width: 0; padding: 0.8rem 0.4rem; }
   .countdown__num { font-size: 1.4rem; }
   .countdown__label { font-size: 0.62rem; letter-spacing: 0.08em; }
+  .eyebrow--title { margin-bottom: 1.2rem; }
+  .map-section { padding-top: 1.2rem; padding-bottom: 1.2rem; }
 }
