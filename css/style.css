@@ -298,6 +298,16 @@ img { max-width: 100%; display: block; }
 }
 .event__venue { margin: 0.2rem 0; }
 .event__address { color: var(--color-text-soft); margin: 0; }
+.event__map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.event__map-link:hover { opacity: 0.8; }
+.event__map-icon { flex-shrink: 0; }
 
 .event__calendar-wrap { text-align: center; display: flex; }
 .mini-calendar {
