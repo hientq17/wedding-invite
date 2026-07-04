@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initRsvpForm();
   initGiftMessageForm();
   initGalleryLightbox();
-  initMapFallback();
 });
 
 function initMusicToggleWiring() {
@@ -108,7 +107,7 @@ function initMiniCalendar() {
   el.innerHTML = `
     <div class="mini-calendar__photo">
       <img src="assets/decor/calendar2.jpg" alt="" />
-      <span class="mini-calendar__corner mini-calendar__corner--left">${mm}.${dd}</span>
+      <span class="mini-calendar__corner mini-calendar__corner--left">${dd}.${mm}</span>
       <span class="mini-calendar__corner mini-calendar__corner--right">Tiệc cưới nhà trai</span>
       <div class="mini-calendar__overlay">
         <div class="mini-calendar__header">${monthNames[month]} ${year}</div>
@@ -164,7 +163,7 @@ function initMiniCalendarBride() {
   el.innerHTML = `
     <div class="mini-calendar__photo">
       <img src="assets/decor/calendar1.jpg" alt="" />
-      <span class="mini-calendar__corner mini-calendar__corner--left">${mm}.${dd}</span>
+      <span class="mini-calendar__corner mini-calendar__corner--left">${dd}.${mm}</span>
       <span class="mini-calendar__corner mini-calendar__corner--right">Tiệc cưới nhà gái</span>
       <div class="mini-calendar__overlay">
         <div class="mini-calendar__header">${monthNames[month]} ${year}</div>
@@ -427,45 +426,6 @@ function initGalleryLightbox() {
    fail to load (e.g. blocked by in-app browsers
    like Messenger/Instagram/Zalo webviews)
    ============================================ */
-function initMapFallback() {
-  const section = document.getElementById('map');
-  if (!section) return;
-
-  // In-app webviews (Messenger, Zalo, etc.) often load a "page unavailable"
-  // placeholder for the Google Maps iframe instead of failing outright, so
-  // the iframe still fires `load` and the timeout below never catches it.
-  // Detect these browsers up front and hide the section immediately.
-  const ua = navigator.userAgent || '';
-  if (/FBAN|FBAV|FB_IAB|Instagram|Line\/|Zalo|MicroMessenger|TikTok/i.test(ua)) {
-    section.hidden = true;
-    return;
-  }
-
-  const iframes = Array.from(section.querySelectorAll('iframe'));
-  if (!iframes.length) return;
-
-  let hidden = false;
-  function hideSection() {
-    if (hidden) return;
-    hidden = true;
-    section.hidden = true;
-  }
-
-  iframes.forEach((iframe) => {
-    let loaded = false;
-    const timeout = setTimeout(() => {
-      if (!loaded) hideSection();
-    }, 6000);
-    iframe.addEventListener('load', () => {
-      loaded = true;
-      clearTimeout(timeout);
-    });
-    iframe.addEventListener('error', () => {
-      clearTimeout(timeout);
-      hideSection();
-    });
-  });
-}
 
 function selectRSVP(option){
 
