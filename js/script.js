@@ -34,10 +34,12 @@ function initMusicToggleWiring() {
           document.removeEventListener('click', startOnInteraction);
           document.removeEventListener('touchstart', startOnInteraction);
           document.removeEventListener('keydown', startOnInteraction);
+          window.removeEventListener('scroll', startOnInteraction);
         };
         document.addEventListener('click', startOnInteraction);
         document.addEventListener('touchstart', startOnInteraction);
         document.addEventListener('keydown', startOnInteraction);
+        window.addEventListener('scroll', startOnInteraction, { passive: true });
       });
   }
   tryAutoplay();
