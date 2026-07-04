@@ -7,11 +7,24 @@ document.addEventListener('DOMContentLoaded', () => {
   initRsvpForm();
   initGiftMessageForm();
   initGalleryLightbox();
+  initMapFallback();
 });
 
 function initMusicToggleWiring() {
   const music = document.getElementById('bg-music');
   const musicToggle = document.getElementById('music-toggle');
+
+  const musicHint = document.getElementById('music-hint');
+
+  const updateHint = () => {
+    if (musicHint) musicHint.classList.toggle('is-visible', music.paused);
+  };
+
+  if (musicHint) {
+    setTimeout(updateHint, 1000);
+    music.addEventListener('play', updateHint);
+    music.addEventListener('pause', updateHint);
+  }
 
   musicToggle.addEventListener('click', () => {
     if (music.paused) {
@@ -22,27 +35,6 @@ function initMusicToggleWiring() {
       musicToggle.setAttribute('aria-pressed', 'false');
     }
   });
-
-  function tryAutoplay() {
-    music.play()
-      .then(() => musicToggle.setAttribute('aria-pressed', 'true'))
-      .catch(() => {
-        // Autoplay blocked by browser — start on the first user interaction instead.
-        const startOnInteraction = () => {
-          music.play().catch(() => {});
-          musicToggle.setAttribute('aria-pressed', 'true');
-          document.removeEventListener('click', startOnInteraction);
-          document.removeEventListener('touchstart', startOnInteraction);
-          document.removeEventListener('keydown', startOnInteraction);
-          window.removeEventListener('scroll', startOnInteraction);
-        };
-        document.addEventListener('click', startOnInteraction);
-        document.addEventListener('touchstart', startOnInteraction);
-        document.addEventListener('keydown', startOnInteraction);
-        window.addEventListener('scroll', startOnInteraction, { passive: true });
-      });
-  }
-  tryAutoplay();
 }
 initMusicToggleWiring();
 
@@ -414,6 +406,40 @@ function initGalleryLightbox() {
     window.addEventListener('resize', updatePreview);
     updatePreview();
   }
+}
+
+/* ============================================
+   Hide the map section if the Google Maps embeds
+   fail to load (e.g. blocked by in-app browsers
+   like Messenger/Instagram/Zalo webviews)
+   ============================================ */
+function initMapFallback() {
+  const section = document.getElementById('map');
+  if (!section) return;
+  const iframes = Array.from(section.querySelectorAll('iframe'));
+  if (!iframes.length) return;
+
+  let hidden = false;
+  function hideSection() {
+    if (hidden) return;
+    hidden = true;
+    section.hidden = true;
+  }
+
+  iframes.forEach((iframe) => {
+    let loaded = false;
+    const timeout = setTimeout(() => {
+      if (!loaded) hideSection();
+    }, 6000);
+    iframe.addEventListener('load', () => {
+      loaded = true;
+      clearTimeout(timeout);
+    });
+    iframe.addEventListener('error', () => {
+      clearTimeout(timeout);
+      hideSection();
+    });
+  });
 }
 
 function selectRSVP(option){

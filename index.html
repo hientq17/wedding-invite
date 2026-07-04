@@ -18,6 +18,7 @@
 <body>
 
 <!-- Floating music toggle -->
+<span id="music-hint" class="music-hint">Bật nhạc nền?</span>
 <button id="music-toggle" class="music-toggle" aria-label="Bật/tắt nhạc nền" aria-pressed="false">
   <span class="music-toggle__icon"></span>
 </button>
@@ -57,7 +58,7 @@
     <p class="eyebrow eyebrow--title">Chúng mình là</p>
     <div class="couple__grid">
       <div class="couple__card">
-        <img class="couple__photo" src="assets/photos/img5.jpg" alt="Ảnh Chú Rể" />
+        <img class="couple__photo" src="assets/decor/avt1.jpg" alt="Ảnh Chú Rể" />
         <h1 class="hero__names">
           <span class="hero__name">Quang Hiền</span>
         </h1>
@@ -66,7 +67,7 @@
       </div>
       <div class="couple__divider" aria-hidden="true">&amp;</div>
       <div class="couple__card">
-        <img class="couple__photo" src="assets/photos/img4.jpg" alt="Ảnh Cô Dâu" />
+        <img class="couple__photo" src="assets/decor/avt2.jpg" alt="Ảnh Cô Dâu" />
         <h1 class="hero__names">
           <span class="hero__name">Lâm Giang</span>
         </h1>
@@ -202,7 +203,7 @@
         <img src="assets/decor/qr1.jpg" alt="QR Ngân hàng TPBank" class="qr-image">
         <div class="bank-info">
           <p><strong>Ngân hàng</strong><br>TPBank</p>
-          <p><strong>Số tài khoản</strong><br>02411042501
+          <p><strong>Số tài khoản</strong><br><span class="account-number">02411042501</span>
             <button type="button" class="copy-btn" data-copy="02411042501">Sao chép</button>
           </p>
           <p><strong>Chủ tài khoản</strong><br>TRINH QUANG HIEN</p>
@@ -212,7 +213,7 @@
         <img src="assets/decor/qr2.jpg" alt="QR Ngân hàng BIDV" class="qr-image">
         <div class="bank-info">
           <p><strong>Ngân hàng</strong><br>BIDV</p>
-          <p><strong>Số tài khoản</strong><br>51110000516510
+          <p><strong>Số tài khoản</strong><br><span class="account-number">51110000516510</span>
             <button type="button" class="copy-btn" data-copy="51110000516510">Sao chép</button>
           </p>
           <p><strong>Chủ tài khoản</strong><br>NGUYEN LAM GIANG</p>
@@ -222,11 +223,11 @@
 
     <form id="gift-message-form" class="rsvp-form reveal">
       <div class="field">
-        <label for="guest-name">Họ Và Tên</label>
+        <label for="guest-name">Tên của bạn</label>
         <input type="text" id="guest-name" name="guest-name" required />
       </div>
       <div class="field">
-        <label for="gift-message">Lời nhắn gửi đến cô dâu chú rể</label>
+        <label for="gift-message">Lời nhắn gửi đến chúng mình</label>
         <textarea id="gift-message" name="gift-message" rows="4"></textarea>
       </div>
       <button type="submit" class="btn btn--filled">Gửi</button>
@@ -240,15 +241,15 @@
     <p class="eyebrow reveal eyebrow--title">💝 Xác Nhận Tham Dự</p>
     <form id="rsvp-form" class="rsvp-form reveal">
       <div class="field">
-        <label for="guest-name">Họ Và Tên</label>
+        <label for="guest-name">Tên của bạn</label>
         <input type="text" id="guest-name" name="guest-name" required />
       </div>
       <div class="field">
-        <label for="guest-count">Số Lượng Khách</label>
+        <label for="guest-count">Số lượng khách</label>
         <input type="number" id="guest-count" name="guest-count" min="1" max="10" value="1" />
       </div>
       <div class="field">
-        <label for="guest-message">Lời Nhắn Gửi Đến Cô Dâu Chú Rể</label>
+        <label for="guest-message">Lời Nhắn Gửi Đến Chúng Mình</label>
         <textarea id="guest-message" name="guest-message" rows="4"></textarea>
       </div>
       <button type="submit" class="btn btn--filled">Gửi Xác Nhận</button>
