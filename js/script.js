@@ -183,9 +183,9 @@ function initMiniCalendarBride() {
       </div>
       <p class="event__venue">Khách Sạn Đại Thành</p>
       <p class="event__address">
-        <a class="event__map-link" href="https://maps.app.goo.gl/NZTotpAeLWmBfpY89" target="_blank" rel="noopener noreferrer" aria-label="Xem bản đồ: Xã Yên Xuân, Tỉnh Nghệ An">
+        <a class="event__map-link" href="https://maps.app.goo.gl/NZTotpAeLWmBfpY89" target="_blank" rel="noopener noreferrer" aria-label="Xem bản đồ: Xã Anh Sơn, Tỉnh Nghệ An">
           <svg class="event__map-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 2C7.58 2 4 5.58 4 10c0 5.25 7.05 11.34 7.35 11.6a1 1 0 0 0 1.3 0C13 21.34 20 15.25 20 10c0-4.42-3.58-8-8-8zm0 10.5A2.5 2.5 0 1 1 12 7.5a2.5 2.5 0 0 1 0 5z"/></svg>
-          <span>Xã Yên Xuân, Tỉnh Nghệ An</span>
+          <span>Xã Anh Sơn, Tỉnh Nghệ An</span>
         </a>
       </p>
     </div>
